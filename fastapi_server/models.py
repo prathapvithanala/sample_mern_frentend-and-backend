@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 class Student_model(BaseModel):
     stu_name:str
-    stu_dept:str
+    stu_depts:str
     stu_age:int
     stu_mark:float
 class staff_model(BaseModel):
