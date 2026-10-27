@@ -35,7 +35,7 @@ function Register(){
                 <option value="EMPLOYEE">EMPOLYEE</option>
                 <option value="HR">HR</option>
             </select>
-            <button type="submit">Register</button>
+            <button type="submit">Register </button>
         </form>
     </div>
 }
