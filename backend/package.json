@@ -7,6 +7,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
@@ -14,5 +15,8 @@
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mongoose": "^9.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
