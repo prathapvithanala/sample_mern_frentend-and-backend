@@ -3,6 +3,7 @@ let router=express.Router();
 let {users}=require('../models/users');
 let bcrypt=require('bcrypt');
 
+
 router.post("/register",async (req,res)=>{
     let data=req.body;
     data.password=await bcrypt.hash(data.password,10);
@@ -11,29 +12,32 @@ router.post("/register",async (req,res)=>{
     res.send(result);
 })
 
-router.post("/login",async (req,res)=>{
+router.post("/login",async(req,res)=>{
     let data=req.body;
-    let emailcheck= await users.findOne({email:data.email});
-    if (emailcheck){
-        let matchpass=await bcrypt.compare(req.body.password,emailcheck.password);
+    let emailcheck=await users.findOne({email:data.email});
+    if(emailcheck){
+        let matchpass=await bcrypt.compare(data.password,emailcheck.password);
         if(matchpass){
             res.send({
-                message:"login successfull",
-                user :{
-                     _id:emailcheck._id,
-                     name:emailcheck.name, 
-                     email:emailcheck.email,
-                     role:emailcheck.role
-                }
-            });
-              
+                message:"login successful",
+                    user:{
+                        _id:emailcheck._id,
+                        name: emailcheck.name,
+                        email:emailcheck.email,
+                        role: emailcheck.role
+                    }
+
+                    });
+            
         }else{
-         res.send({"message":"invalid credentials"});
+            res.send({"message":"invalid credentials"});
         }
+
     }else{
-            res.send({"message":"user not found"});
-        
+        res.send({"message":"user not found"});
+
     }
+    
 })
 
 router.get("/viewtask",(req,res)=>{

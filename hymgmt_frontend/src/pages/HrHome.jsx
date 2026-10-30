@@ -1,6 +1,20 @@
+import { useNavigate } from "react-router-dom"
+
 function HrHome(){
-    return(<div>
+    let navigate=useNavigate()
+    let currrentuser=JSON.parse(localStorage.getItem("currentuser"))
+
+    let handleLogout=(e)=>{
+        localStorage.removeItem("currentuser")
+        navigate("/login")
+    }
+
+    return(
+    <div>
         <h1>HR home page</h1>
-    </div>)
+        <h2>welcome {currentuser.name}</h2>
+        <button onClick={handleLogout}>Logout</button>
+    </div>
+    )
 }
 export default HrHome

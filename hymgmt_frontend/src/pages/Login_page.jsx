@@ -17,10 +17,27 @@ function Login_page(){
                 {
                     method:"POST",
                     headers:{"Content-Type":"application/json"},
-                    body:JSON.stringify({email,password})    
+                    body:JSON.stringify({email,password})
                 });
                 let data=await req.json()
                 console.log(data);
+                if(data.user){
+                    localStorage.setItem("currentuser",JSON.stringify(data.user))
+
+
+                    if(data.user.role=="HR"){
+                        navigate("/hrHome");
+                    }else{
+                        navigate("/emphome")
+                    }
+                }else{
+                    setError(data.message);
+                }
+
+
+
+
+            
         }
     }
     return(
